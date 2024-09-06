@@ -1,0 +1,120 @@
+﻿@using PagedList.Mvc
+@using PagedList
+
+
+@model PagedList.IPagedList<WebApplication1.Context.Product>
+
+@{
+    ViewBag.Title = "Trang Quản lí";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quản lí sản phẩm</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới sản phẩm", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Product", FormMethod.Get))
+{
+    <p>
+        Tìm tên sản phẩm: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Tìm kiếm" />
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Name)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Avatar)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().CategoryId)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().ShortDes)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().Price)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().PriceDiscount)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().TypeId)</th>
+            <th>@Html.DisplayNameFor(model => model.FirstOrDefault().BrandId)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Avatar)</td>
+                <td>@Html.DisplayFor(modelItem => item.CategoryId)</td>
+                <td>@Html.DisplayFor(modelItem => item.ShortDes)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>@Html.DisplayFor(modelItem => item.PriceDiscount)</td>
+                <td>@Html.DisplayFor(modelItem => item.TypeId)</td>
+                <td>@Html.DisplayFor(modelItem => item.BrandId)</td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination Info -->
+
+
+<!-- PagedList Pager -->
+<style>
+    .pagination-container {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+        .pagination li {
+            display: inline;
+        }
+
+        .pagination a, .pagination span {
+            padding: 8px 16px;
+            margin: 0 4px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+            .pagination a:hover {
+                background-color: #f1f1f1;
+                border-color: #ccc;
+            }
+
+        .pagination .active a, .pagination .active span {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .pagination .disabled span {
+            color: #ccc;
+            border-color: #ddd;
+        }
+
+        .pagination .disabled a {
+            pointer-events: none;
+        }
+</style>
+
+Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.currentFilter}))
+
+

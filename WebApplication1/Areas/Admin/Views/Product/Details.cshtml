@@ -1,0 +1,74 @@
+﻿@model WebApplication1.Context.Product
+
+@{
+    ViewBag.Title = "Product Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Include Bootstrap CSS (if not included in the layout) -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<h2>Chi tiết sản phẩm</h2>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Thông tin sản phẩm</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th scope="row">@Html.DisplayNameFor(model => model.Name)</th>
+                            <td>@Html.DisplayFor(model => model.Name)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">@Html.DisplayNameFor(model => model.Avatar)</th>
+                            <td>@Html.DisplayFor(model => model.Avatar)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">@Html.DisplayNameFor(model => model.CategoryId)</th>
+                            <td>@Html.DisplayFor(model => model.CategoryId)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">@Html.DisplayNameFor(model => model.ShortDes)</th>
+                            <td>@Html.DisplayFor(model => model.ShortDes)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">@Html.DisplayNameFor(model => model.FullDescription)</th>
+                            <td>@Html.DisplayFor(model => model.FullDescription)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">@Html.DisplayNameFor(model => model.Price)</th>
+                            <td>@Html.DisplayFor(model => model.Price)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">@Html.DisplayNameFor(model => model.PriceDiscount)</th>
+                            <td>@Html.DisplayFor(model => model.PriceDiscount)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">@Html.DisplayNameFor(model => model.TypeId)</th>
+                            <td>@Html.DisplayFor(model => model.TypeId)</td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">@Html.DisplayNameFor(model => model.BrandId)</th>
+                            <td>@Html.DisplayFor(model => model.BrandId)</td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-actions">
+                <a href="@Url.Action("Edit", "Product", new { id = Model.Id })" class="btn btn-primary">Sửa</a>
+                <a href="@Url.Action("Index", "Product")" class="btn btn-secondary">Quay về trang quản lí</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap JS and dependencies (if not included in the layout) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

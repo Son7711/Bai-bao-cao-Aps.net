@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-warning">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    else
+    {
+        <h2 class="text-success">Thanh toán thành công!</h2>
+        <p class="lead">Cảm ơn bạn đã đặt hàng tại cửa hàng của chúng tôi.</p>
+        <p>Đơn hàng của bạn đã được xử lý thành công. Bạn có thể tiếp tục mua sắm hoặc theo dõi trạng thái đơn hàng của mình.</p>
+    }
+
+    <p>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Tiếp tục mua hàng</a>
+    </p>
+</div>
